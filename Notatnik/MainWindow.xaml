@@ -1,0 +1,93 @@
+﻿<Window x:Class="Notatnik.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:p="clr-namespace:Notatnik.Properties"
+        mc:Ignorable="d"
+        Title="{x:Static p:Resources.TytulOkna}" Height="450" Width="800" Closing="Window_Closing" KeyDown="Window_KeyDown" Icon="/Ikony/notepad.png">
+    <Window.Resources>
+        <Image x:Key="IkonaNowy" x:Shared ="false" Source="/Ikony/icons8-new-file-100.png" Width="16" Height="16"/>
+        <Image x:Key="IkonaOwtórz" x:Shared ="false" Source="/Ikony/icons8-open-file-folder-100.png" Width="16" Height="16"/>
+        <Image x:Key="IkonaZapisz" x:Shared ="false" Source="/Ikony/icons8-save-100.png" Width="16" Height="16"/>
+        <Image x:Key="IkonaDrukuj" x:Shared ="false" Source="/Ikony/icons8-print-100.png" Width="16" Height="16"/>
+        <Image x:Key="IkonaCofnij" x:Shared ="false" Source="/Ikony/icons8-undo-100.png" Width="16" Height="16"/>
+        <Image x:Key="IkonaPowtórz" x:Shared ="false" Source="/Ikony/icons8-redo-100.png" Width="16" Height="16"/>
+        
+        <Image x:Key="IkonaWytnij" x:Shared ="false" Source="/Ikony/icons8-cut-100.png" Width="16" Height="16"/>
+        <Image x:Key="IkonaWklej" x:Shared ="false" Source="/Ikony/icons8-paste1-100.png" Width="16" Height="16"/>
+        <Image x:Key="IkonaKopiuj" x:Shared ="false" Source="/Ikony/icons8-copy-100.png" Width="16" Height="16"/>
+        <Image x:Key="IkonaUsun" x:Shared ="false" Source="/Ikony/icons8-delete-100.png" Width="16" Height="16"/>
+        <Image x:Key="IkonaZegar" x:Shared ="false" Source="/Ikony/icons8-clock-100.png" Width="16" Height="16"/>
+        <Image x:Key="IkonaTlo" x:Shared ="false" Source="/Ikony/icons8-invert-colors-100.png" Width="16" Height="16"/>
+    </Window.Resources>
+   
+    <DockPanel> 
+        <Menu IsMainMenu="True" DockPanel.Dock="Top">
+            <MenuItem Header="{x:Static p:Resources.Plik}">
+                <MenuItem Header="{x:Static p:Resources.Nowy}" Icon="{StaticResource IkonaNowy}" InputGestureText="Ctrl+N" Click="MenuItem_Nowy_Click"/>
+                <MenuItem Header="{x:Static p:Resources.Otworz}" Icon="{StaticResource IkonaOwtórz}" Click="MenuItem_Otworz_Click" InputGestureText="Ctrl+O"/>
+                <MenuItem Header="{x:Static p:Resources.Zapisz}" Icon="{StaticResource IkonaZapisz}" InputGestureText="Ctrl+S" Click="MenuItem_Zapisz_Click"/>
+                <MenuItem Header="{x:Static p:Resources.ZapiszJako}" Click="MenuItem_Zapisz_jako_Click"/>
+                <Separator/>
+                <MenuItem Header="{x:Static p:Resources.Drukuj}" Icon="{StaticResource IkonaDrukuj}" InputGestureText="Ctrl+P" Click="MenuItem_Drukuj_Click"/>
+                <MenuItem Header="{x:Static p:Resources.Zakmnij}"  Icon="{StaticResource IkonaUsun}" InputGestureText="Alt+F4" Click="MenuItem_Zamknij_Click"/>
+            </MenuItem>
+            <MenuItem Header="{x:Static p:Resources.Edycja}">
+                <MenuItem Header="{x:Static p:Resources.Cofnij}"  Icon="{StaticResource IkonaCofnij}" InputGestureText="Ctrl+Z" Click="MenuItem_Cofnij_Click"/>
+                <MenuItem Header="{x:Static p:Resources.Powtorz}"  Icon="{StaticResource IkonaPowtórz}" InputGestureText="Ctrl+Y" Click="MenuItem_Powtorz_Click"/>
+                <MenuItem Header="{x:Static p:Resources.Wytnij}"  Icon="{StaticResource IkonaWytnij}" InputGestureText="Ctrl+X" Click="MenuItem_Wytnij_Click"/>
+                <MenuItem Header="{x:Static p:Resources.Kopiuj}"  Icon="{StaticResource IkonaKopiuj}" InputGestureText="Ctrl+C" Click="MenuItem_Kopiuj_Click"/>
+                <MenuItem Header="{x:Static p:Resources.Wklej}"  Icon="{StaticResource IkonaWklej}" InputGestureText="Ctrl+V" Click="MenuItem_Wklej_Click"/>
+                <MenuItem Header="{x:Static p:Resources.Usun}"  Icon="{StaticResource IkonaUsun}" InputGestureText="Del" Click="MenuItem_Usun_Click"/>
+                <Separator/>
+                <MenuItem Header="{x:Static p:Resources.ZaznaczWszytsko}" InputGestureText="Ctrl+A" Click="MenuItem_ZaznaczWszytsko_Click"/>
+                <MenuItem Header="{x:Static p:Resources.GodzinaData}"  Icon="{StaticResource IkonaZegar}" InputGestureText="F5" Click="MenuItem_DotaGodzina_Click"/>
+            </MenuItem>
+            <MenuItem Header="{x:Static p:Resources.Widok}">
+                <MenuItem Header="{x:Static p:Resources.ZawiajaWierze}" x:Name="ZawijajWiersze" IsCheckable="True" IsChecked="True" Click="MenuItem_ZawijajWiersze_Click"/>
+                <MenuItem Header="{x:Static p:Resources.KolorTla}"  Icon="{StaticResource IkonaTlo}">
+                    <MenuItem Header="{x:Static p:Resources.Zielony}" Click="MenuItem_KolorTlaClick" Background="#FF16941C" Foreground="White"/>
+                    <MenuItem Header="{x:Static p:Resources.Czerwony}" Click="MenuItem_KolorTlaClick" Background="#FFF31A1A" Foreground="White"/>
+                    <MenuItem Header="{x:Static p:Resources.Zolty}" Click="MenuItem_KolorTlaClick" Background="#FFEEFF26"/>
+                    <MenuItem Header="{x:Static p:Resources.Niebiestki}" Click="MenuItem_KolorTlaClick " Background="#FF4555FF" Foreground="White"/>
+                    <MenuItem Header="{x:Static p:Resources.Fioletowy}" Click="MenuItem_KolorTlaClick" Background="#FFBF1DAF" Foreground="White"/>
+                    <MenuItem Header="{x:Static p:Resources.Pomaranczowy}" Click="MenuItem_KolorTlaClick" Background="#FFD67E17" Foreground="White"/>
+                    <MenuItem Header="{x:Static p:Resources.Czarny}" Click="MenuItem_KolorTlaClick" Foreground="White" Background="Black"/>
+                    <MenuItem Header="{x:Static p:Resources.Szary}" Click="MenuItem_KolorTlaClick" Background="#FFBCBCBC"/>
+                    <MenuItem Header="{x:Static p:Resources.Bialy}" Click="MenuItem_KolorTlaClick" Background="#FFF6F4F4"/>
+                </MenuItem>
+                <Separator/>
+                <MenuItem Header="{x:Static p:Resources.PasekNarzedzi}" IsCheckable="True" IsChecked="True" Click="MenuItem_PasekNarzedzi_Click"/>
+                <MenuItem Header="{x:Static p:Resources.PasekStanu}" IsCheckable="True" IsChecked="True" Click="MenuItem_PasekStanu_Click"/>
+            </MenuItem>
+        </Menu>
+        <ToolBarTray x:Name="toolBar" DockPanel.Dock="Top">
+            <ToolBar>
+                <Button ToolTip="{x:Static p:Resources.Nowy}" Content="{StaticResource IkonaNowy}" Click="MenuItem_Nowy_Click"/>
+                <Button ToolTip="{x:Static p:Resources.Otworz}" Content="{StaticResource IkonaOwtórz}" Click="MenuItem_Otworz_Click"/>
+                <Button ToolTip="{x:Static p:Resources.Edycja}" Content="{StaticResource IkonaZapisz}" Click="MenuItem_Zapisz_Click"/>
+                <Separator/>
+                <Button ToolTip="{x:Static p:Resources.Drukuj}" ToolBar.OverflowMode="AsNeeded" Content="{StaticResource IkonaDrukuj}" Click="MenuItem_Drukuj_Click"/>
+            </ToolBar>
+            <ToolBar>
+                <Button ToolTip="{x:Static p:Resources.Cofnij}" Content="{StaticResource IkonaCofnij}" Click="MenuItem_Cofnij_Click"/>
+                <Button ToolTip="{x:Static p:Resources.Powtorz}" Content="{StaticResource IkonaPowtórz}" Click="MenuItem_Powtorz_Click"/>
+                <Separator/>
+                <Button ToolTip="{x:Static p:Resources.Wytnij}" Content="{StaticResource IkonaWytnij}" Click="MenuItem_Wytnij_Click"/>
+                <Button ToolTip="{x:Static p:Resources.Kopiuj}" Content="{StaticResource IkonaKopiuj}" Click="MenuItem_Kopiuj_Click"/>
+                <Button ToolTip="{x:Static p:Resources.Wklej}" Content="{StaticResource IkonaWklej}" Click="MenuItem_Wklej_Click"/>
+                <Button ToolTip="{x:Static p:Resources.Zakmnij}" Content="{StaticResource IkonaUsun}" Click="MenuItem_Zamknij_Click"/>
+
+            </ToolBar>
+        </ToolBarTray>
+        <StatusBar x:Name="statusBar" DockPanel.Dock="Bottom">
+            <StatusBarItem >
+                <TextBlock x:Name="statusBarText"> Text"[Brak pliku]"</TextBlock>
+            </StatusBarItem>
+        </StatusBar>
+        <TextBox x:Name="textBox" AcceptsReturn="True" TextWrapping="Wrap"
+                 ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                 ScrollViewer.VerticalScrollBarVisibility="Auto" TextChanged="textBox_TextChanged"/>
+    </DockPanel>
+</Window>
